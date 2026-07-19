@@ -13,7 +13,7 @@ jobs:
       - run: echo 'test'
 
       - name: checkout
-        uses: uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.0
       - name: list files
         run: |
           echo "The repo ${{github.repository}} contains the following files:"
