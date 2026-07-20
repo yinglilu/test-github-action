@@ -1,0 +1,11 @@
+name: Reusable pre-commit
+on:
+  workflow_call:
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Run lint, format check, unit tests"
+      # 例如：npm ci && npm run lint && npm test
