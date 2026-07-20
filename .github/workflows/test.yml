@@ -1,24 +1,21 @@
 name: test workflow
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
-  first_job:
-    runs-on: ubuntu-22.04
+  job1:
     steps:
-      - run: echo 'test'
-
-      - name: checkout
-        uses: actions/checkout@v7.0.0
-      - name: list files
-        run: |
-          echo "The repo ${{github.repository}} contains the following files:"
-          tree
-      
+      - run: echo "job1"
+  job2:
+     steps:
+       - run: echo "job2"  
+    needs: 
+      - job1
+  job3:
+    steps:
+      - run: echo "job3"
+    needs: [job1, job2]
   
     
  
