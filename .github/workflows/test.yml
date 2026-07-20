@@ -12,10 +12,14 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - run: echo "job2"  
-    needs: 
-      - job1
   job3:
     runs-on: ubuntu-22.04
     steps:
       - run: echo "job3"
     needs: [job1, job2]
+  job4:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: echo "job3"
+    needs: [job3]
+    
