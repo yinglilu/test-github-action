@@ -1,25 +1,25 @@
-name: test workflow
+name: Run Tests
 
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["Pre-Commit Lint"] # 👈 对应 pre-commit.yml 里的 name
+    types:
+      - completed # 当 Pre-Commit Lint 运行完成时触发
 
 jobs:
-  job1:
-    runs-on: ubuntu-22.04
+  test:
+    runs-on: ubuntu-latest
+    # 👈 关键判断：只有当 pre-commit 成功执行（conclusion == 'success'）时才运行测试
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - run: echo "job1"
-  job2:
-    runs-on: ubuntu-22.04
-    steps:
-      - run: echo "job2"  
-  job3:
-    runs-on: ubuntu-22.04
-    steps:
-      - run: echo "job3"
-    needs: [job1, job2]
-  job4:
-    runs-on: ubuntu-22.04
-    steps:
-      - run: echo "job3"
-    needs: [job3]
-    
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Tests
+        run: |
+          python --version
