@@ -1,0 +1,15 @@
+name: "Unit Test"
+description: "Set up Python and run unit tests"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Run Unit Tests
+      shell: bash  # 👈 Composite Action 中的 run 步骤必须指定 shell
+      run: |
+        python --version

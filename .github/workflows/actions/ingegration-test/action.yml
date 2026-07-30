@@ -1,0 +1,15 @@
+name: "Integration Test"
+description: "Set up Python and run integration tests"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Run Integration Tests
+      shell: bash  # 👈 Composite Action 里的 run 步骤必须显式指定 shell
+      run: |
+        python --version
