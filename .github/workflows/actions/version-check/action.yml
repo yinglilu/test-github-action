@@ -1,0 +1,16 @@
+name: "Version Check"
+description: "Set up Python and run version check"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Check version
+      shell: bash  # 👈 Composite Action 里的 run 命令必须加这一行！
+      run: |
+        python --version
+        # 这里可以替换为你具体的版本检查逻辑，比如检查 pyproject.toml / __init__.py 等
