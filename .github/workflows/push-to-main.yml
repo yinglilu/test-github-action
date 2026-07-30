@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository  # 👈 必须有这一步！先把代码拉到虚拟机里
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Run Pre-Commit Action
         uses: ./.github/actions/pre-commit # 👈 这样才能找到 .github/actions/pre-commit/action.yml
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository  # 👈 同样，这一步不能少
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Run Version Check Action
         uses: ./.github/actions/version-check
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [pre-commit, version-check]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/unit-test
 
   integration-test:
@@ -38,5 +38,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: [pre-commit, version-check]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/integration-test
