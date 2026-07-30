@@ -10,11 +10,11 @@ jobs:
   # ==========================================
   pre-commit:
     name: "code-check: Pre-Commit"
-    uses: ./.github/workflows/reusable/reusable-pre-commit.yml # 👈 调用复用组件
+    uses: ./.github/workflows/reusable-pre-commit.yml # 👈 调用复用组件
 
   version-check:
     name: "code-check: Version Check"
-    uses: ./.github/workflows/reusable/reusable-version-check.yml # 👈 调用复用组件
+    uses: ./.github/workflows/reusable-version-check.yml # 👈 调用复用组件
 
   # ==========================================
   # Stage 2: 测试阶段 (Test)
@@ -26,9 +26,9 @@ jobs:
   unit-test:
     name: "test: Unit Tests"
     needs: [pre-commit, version-check] # 👈 依赖 Stage 1
-    uses: ./.github/workflows/reusable/reusable-unit-test.yml # 👈 调用可重用组件
+    uses: ./.github/workflows/reusable-unit-test.yml # 👈 调用可重用组件
 
   integration-test:
     name: "test: Integration Tests"
     needs: [pre-commit, version-check] # 👈 依赖 Stage 1，与 unit-test 并行
-    uses: ./.github/workflows/reusable/reusable-integration-test.yml # 👈 调用可重用组件
+    uses: ./.github/workflows/reusable-integration-test.yml # 👈 调用可重用组件
