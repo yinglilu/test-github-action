@@ -6,10 +6,20 @@ repos:
       - id: check-yaml
         name: Check YAML syntax
         files: ^\.github/workflows/
+        # 显示指定阶段，避免旧版默认阶段触发的 deprecation 警告
+        stages: [pre-commit, pre-push, manual]
 
   # 2. GitHub Actions 专项语法与逻辑 Linter (actionlint)
   - repo: https://github.com/rhysd/actionlint
     rev: v1.7.7
     hooks:
       - id: actionlint
-        # 可选：如果项目中有 shellcheck，actionlint 会自动调用它检查 run: 里的 shell 脚本
+        stages: [pre-commit, pre-push, manual]
+
+# 3. Python 快速代码格式化 (Ruff Format)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.4  # 可以根据需要替换为最新版本，或运行 pre-commit autoupdate 更新
+    hooks:
+      - id: ruff-format
+        # 如果你还想同时开启 ruff 的代码静态检查(Linting)，可以取消下面这行的注释：
+        # - id: ruff
