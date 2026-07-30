@@ -24,3 +24,19 @@ jobs:
 
       - name: Run Version Check Action
         uses: ./.github/actions/version-check
+
+  unit-test:
+    name: "test: Unit Tests"
+    runs-on: ubuntu-latest
+    needs: [pre-commit, version-check]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/unit-test
+
+  integration-test:
+    name: "test: Integration Tests"
+    runs-on: ubuntu-latest
+    needs: [pre-commit, version-check]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/integration-test
