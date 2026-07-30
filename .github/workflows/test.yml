@@ -9,8 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    # 👈 关键判断：只有当 pre-commit 成功执行（conclusion == 'success'）时才运行测试
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    needs: pre-commit
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
