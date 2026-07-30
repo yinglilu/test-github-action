@@ -18,7 +18,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Run pre-commit against workflows
+
+      # (可选) 加上缓存，让服务器运行得更快
+      - name: Cache pre-commit environments
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yml') }}
+
+      - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
         with:
-          extra_args: actionlint --all-files
+          extra_args: --all-files   # 👈 看到没？这里删掉了 actionlint！
