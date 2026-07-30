@@ -1,19 +1,15 @@
-name: Lint GitHub Actions
+name: Pre-commit
 
 on:
-  push:
-    branches: [ main]
-  pull_request:
-    branches: [ main]
+  workflow_call:  # 👈 允许被其他 workflow 调用
 
 jobs:
-  pre-commit-lint:
+  pre-commit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # (可选) 加上缓存，让服务器运行得更快
       - name: Cache pre-commit environments
         uses: actions/cache@v4
         with:
@@ -23,4 +19,4 @@ jobs:
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
         with:
-          extra_args: --all-files   # 👈 看到没？这里删掉了 actionlint！
+          extra_args: --all-files
