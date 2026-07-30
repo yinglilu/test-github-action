@@ -1,0 +1,15 @@
+repos:
+  # 1. 基础 YAML 语法合法性检查
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+        name: Check YAML syntax
+        files: ^\.github/workflows/
+
+  # 2. GitHub Actions 专项语法与逻辑 Linter (actionlint)
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.7
+    hooks:
+      - id: actionlint
+        # 可选：如果项目中有 shellcheck，actionlint 会自动调用它检查 run: 里的 shell 脚本
