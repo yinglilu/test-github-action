@@ -9,7 +9,7 @@ jobs:
     name: job1
     steps:
       - name: Print warning annotation
-        run: echo "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+        run: echo "::warning file=test.py,line=1,col=5,endColumn=7::Missing semicolon"
 
       - name: Print error annotation
-        run: echo "::error file=app.js,line=1,col=5,endColumn=7::Error in app.js"            
+        run: echo "::error file=test.py,line=1,col=5,endColumn=7::Error in test.py"            
