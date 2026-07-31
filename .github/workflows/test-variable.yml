@@ -1,0 +1,16 @@
+name: push-to-main
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5 # 👈 必须 checkout，否则虚拟机里没有你的 .sh 脚本
+
+      - name: 调用 Local Action 并传参
+        uses: ./.github/actions/hello
+        with:
+          user-name: "Alice" # 👈 参数传递给 Action

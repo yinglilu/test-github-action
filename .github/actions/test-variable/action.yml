@@ -1,0 +1,16 @@
+name: "test-variable"
+description: "test variable"
+
+# 1. 定义接收的变量
+inputs:
+  user-name:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run External Bash Script
+      shell: bash
+      # 👈 调用 .sh 脚本，并把 inputs 作为参数传给脚本
+      run: |
+        bash ./scripts/hello.sh "${{ inputs.user-name }}"
