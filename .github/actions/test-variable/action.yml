@@ -1,18 +1,11 @@
 name: "test-variable"
 description: "test variable"
 
-# 1. 定义接收的变量
-inputs:
-  user-name:
-    required: true
+# 👈 这里完全不需要定义 inputs 和 env 映射！
 
 runs:
   using: "composite"
   steps:
     - name: Run External Bash Script
       shell: bash
-      # 👈 将 inputs 转为环境变量传给 Bash 脚本
-      env:
-        USER_NAME: ${{ inputs.user-name }}
-      run: |
-        bash ./scripts/test-variable.sh
+      run: bash ./scripts/test-variable.sh  # 👈 直接调脚本

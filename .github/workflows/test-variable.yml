@@ -4,13 +4,15 @@ on:
   push:
     branches: [ main ]
 
+# 1. 在 Job 级别（或全局）直接声明 env
 jobs:
   test-variable:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5 # 👈 必须 checkout，否则虚拟机里没有你的 .sh 脚本
+    env:
+      USER_NAME: "Alice"    # 👈 这个变量会自动注入到整个 Job 的运行环境中！
 
-      - name: 调用 Local Action 并传参
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: 调用 Local Action（不需要写 with！）
         uses: ./.github/actions/test-variable
-        with:
-          user-name: "Alice" # 👈 参数传递给 Action
