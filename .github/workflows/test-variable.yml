@@ -4,12 +4,13 @@ on:
   push:
     branches: [ main ]
 
+env:
+    USER_NAME: "Alice"    # 👈 这个变量会自动注入到整个 Job 的运行环境中！
+
 # 1. 在 Job 级别（或全局）直接声明 env
 jobs:
   test-variable:
     runs-on: ubuntu-latest
-    env:
-      USER_NAME: "Alice"    # 👈 这个变量会自动注入到整个 Job 的运行环境中！
 
     steps:
       - uses: actions/checkout@v5
