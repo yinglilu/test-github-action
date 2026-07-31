@@ -23,3 +23,12 @@ jobs:
         
       - run: |
           echo "::debug:: debug info"
+
+      - name: Generate Report
+        run: |
+            echo "## 📊 自动化测试报告" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| 测试项 | 结果 | 耗时 |" >> $GITHUB_STEP_SUMMARY
+            echo "| :--- | :--- | :--- |" >> $GITHUB_STEP_SUMMARY
+            echo "| 单元测试 | ✅ 通过 | 12s |" >> $GITHUB_STEP_SUMMARY
+            echo "| 覆盖率 | 88% | - |" >> $GITHUB_STEP_SUMMARY
