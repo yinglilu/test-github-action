@@ -1,4 +1,4 @@
-name: push-to-main
+name: test-variable
 
 on:
   push:
@@ -11,6 +11,6 @@ jobs:
       - uses: actions/checkout@v5 # 👈 必须 checkout，否则虚拟机里没有你的 .sh 脚本
 
       - name: 调用 Local Action 并传参
-        uses: ./.github/actions/hello
+        uses: ./.github/actions/test-variable
         with:
           user-name: "Alice" # 👈 参数传递给 Action
