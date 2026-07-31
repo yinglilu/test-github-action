@@ -12,4 +12,10 @@ jobs:
         run: echo "::warning file=test.py,line=1,col=5,endColumn=7::Missing semicolon"
 
       - name: Print error annotation
-        run: echo "::error file=test.py,line=1,col=5,endColumn=7::Error in test.py"            
+        run: echo "::error file=test.py,line=1,col=5,endColumn=7::Error in test.py"        
+        
+      - run: |
+          echo "::group::编译核心业务代码"
+          echo "test"
+          echo "::endgroup::"
+        
