@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  say-hello:
+  test-variable:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5 # 👈 必须 checkout，否则虚拟机里没有你的 .sh 脚本

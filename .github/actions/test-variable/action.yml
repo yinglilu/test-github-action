@@ -13,4 +13,4 @@ runs:
       shell: bash
       # 👈 调用 .sh 脚本，并把 inputs 作为参数传给脚本
       run: |
-        bash ./scripts/hello.sh "${{ inputs.user-name }}"
+        bash ./scripts/test-variable.sh "${{ inputs.user-name }}"
