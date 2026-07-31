@@ -11,6 +11,8 @@ runs:
   steps:
     - name: Run External Bash Script
       shell: bash
-      # 👈 调用 .sh 脚本，并把 inputs 作为参数传给脚本
+      # 👈 将 inputs 转为环境变量传给 Bash 脚本
+      env:
+        USER_NAME: ${{ inputs.user-name }}
       run: |
-        bash ./scripts/test-variable.sh "${{ inputs.user-name }}"
+        bash ./scripts/test-variable.sh
