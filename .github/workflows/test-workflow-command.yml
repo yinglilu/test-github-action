@@ -1,0 +1,15 @@
+name: test-workflow-command
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    name: job1
+    steps:
+      - name: Print warning annotation
+        run: echo "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+
+      - name: Print error annotation
+        run: echo "::error file=app.js,line=1,col=5,endColumn=7::Error in app.js"            
